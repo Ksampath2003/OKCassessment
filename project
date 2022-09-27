@@ -1,0 +1,38 @@
+#Separating data set into the two teams
+A <- shots_data[shots_data$team == "Team A",]
+B <- shots_data[shots_data$team == "Team B",]
+
+# Attempts separated by team and type
+A_2PTA <- A[(((A$x <= 22 & A$y <= 7.8) & (A$x >= -22 & A$y <= 7.8)) | ((A$x <= 23.75 & A$y > 7.8) & (A$x >= -23.75 & A$y > 7.8))),]
+B_2PTA <- B[(((B$x <= 22 & B$y <= 7.8) & (B$x >= -22 & B$y <= 7.8)) | ((B$x <= 23.75 & B$y > 7.8) & (B$x >= -23.75 & B$y > 7.8))),]
+A_nc3PTA <- A[((A$x > 23.75 & A$y > 7.8) | (A$x <= -23.75 & A$y > 7.8)), ]
+B_nc3PTA <- B[((B$x > 23.75 & B$y > 7.8) | (B$x <= -23.75 & B$y > 7.8)), ]
+A_c3PTA <- A[((A$x >=22 & A$y <= 7.8) | (A$x <= -22 & A$y <= 7.8)), ]
+B_c3PTA <- B[((B$x >=22 & B$y <= 7.8) | (B$x <= -22 & B$y <= 7.8)), ]
+
+# Makes separated by team and type
+A1_2PT <-  A_2PTA[A_2PTA$fgmade == "1", ]
+B1_2PT <- B_2PTA[B_2PTA$fgmade == "1", ]
+A1_nc3PT <-  A_nc3PTA[A_nc3PTA$fgmade == "1", ]
+B1_nc3PT <- B_nc3PTA[B_nc3PTA$fgmade == "1", ]
+A1_c3PT <-  A_c3PTA[A_c3PTA$fgmade == "1", ]
+B1_c3PT <- B_c3PTA[B_c3PTA$fgmade == "1", ]
+
+#attempts separated by type /total number of shots by the team
+nrow(A_2PTA)/nrow(A)
+nrow(B_2PTA)/nrow(B)
+nrow(A_nc3PTA)/nrow(A)
+nrow(B_nc3PTA)/nrow(B)
+nrow(A_c3PTA)/nrow(A)
+nrow(B_c3PTA)/nrow(B)
+
+# makes/attempts separated by team and type
+nrow(A1_2PT)/nrow(A_2PTA)
+nrow(B1_2PT)/nrow(B_2PTA)
+nrow(A1_nc3PT)/nrow(A_nc3PTA)
+nrow(B1_nc3PT)/nrow(B_nc3PTA)
+nrow(A1_c3PT)/nrow(A_c3PTA)
+nrow(B1_c3PT)/nrow(B_c3PTA)
+
+
+
